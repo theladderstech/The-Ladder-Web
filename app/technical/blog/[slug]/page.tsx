@@ -1,18 +1,19 @@
 // app/technical/blog/[slug]/page.tsx
+import type { Metadata } from 'next';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { getPostBySlug, getAllPostSlugs } from '@/lib/blog';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { 
-  Callout, 
-  CodeTitle, 
-  StatsBox, 
-  FeatureBox, 
-  Quote, 
+import {
+  Callout,
+  CodeTitle,
+  StatsBox,
+  FeatureBox,
+  Quote,
   ComparisonTable,
   Steps,
-  Step 
+  Step
 } from '@/components/technical/blogcomponents/MDXComponents';
 
 const components = {
@@ -25,6 +26,50 @@ const components = {
   Steps,
   Step,
 };
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+
+  return {
+    title: `${post.title} | The Ladder Technical Blog`,
+    description: post.excerpt,
+    keywords: [
+      post.category,
+      'technical blog',
+      'software development',
+      'web development',
+      'programming',
+      'technology',
+    ],
+    authors: [{ name: post.author }],
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url: `https://www.theladders.tech/technical/blog/${slug}`,
+      type: 'article',
+      publishedTime: post.date,
+      authors: [post.author],
+      images: [
+        {
+          url: post.image || 'https://www.theladders.tech/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [post.image || 'https://www.theladders.tech/twitter-image.png'],
+    },
+    alternates: {
+      canonical: `https://www.theladders.tech/technical/blog/${slug}`,
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const posts = getAllPostSlugs();
@@ -41,7 +86,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     <main className="bg-[#1E1E1E] min-h-screen">
       {/* Back Button */}
       <div className="relative w-full max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-12 lg:px-16 xl:px-20 2xl:px-32 pt-8">
-        <Link 
+        <Link
           href="/technical/blog"
           className="inline-flex items-center gap-2 text-[#D8F209] hover:gap-3 transition-all duration-300 text-[clamp(14px,3vw,15px)] font-medium"
         >
@@ -54,7 +99,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       <section className="relative py-12 md:py-16">
         <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
           {/* ↑ Changed from max-w-4xl to max-w-6xl */}
-          
+
           {/* Category Badge */}
           <div className="inline-block mb-4">
             <span className="px-4 py-2 bg-[#D8F209]/10 text-[#D8F209] text-[clamp(11px,2.5vw,13px)] font-medium rounded-full uppercase tracking-wider">
@@ -127,6 +172,37 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           </article>
         </div>
       </section>
+
+      {/* Article Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": post.title,
+            "description": post.excerpt,
+            "image": post.image || "https://www.theladders.tech/og-image.png",
+            "datePublished": post.date,
+            "author": {
+              "@type": "Person",
+              "name": post.author
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "The Ladder",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.theladders.tech/ladder-icon.svg"
+              }
+            },
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": `https://www.theladders.tech/technical/blog/${slug}`
+            }
+          })
+        }}
+      />
     </main>
   );
 }

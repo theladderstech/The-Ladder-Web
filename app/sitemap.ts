@@ -1,11 +1,23 @@
-// public/sitemap.ts - Next.js sitemap configuration
-// This file should be placed at app/sitemap.ts for Next.js 14+
+// app/sitemap.ts - Next.js sitemap configuration
+// This file generates a dynamic sitemap including all pages and blog posts
 
 import { MetadataRoute } from 'next'
+import { getAllPosts } from '@/lib/blog'
+import fs from 'fs'
+import path from 'path'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://theladder.com'
-  const currentDate = new Date().toISOString().split('T')[0]
+  const baseUrl = 'https://www.theladders.tech'
+  const currentDate = new Date().toISOString()
+
+  // Get all blog posts dynamically
+  const blogPosts = getAllPosts()
+  const blogSitemapEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    url: `${baseUrl}/technical/blog/${post.slug}`,
+    lastModified: post.date ? new Date(post.date).toISOString() : currentDate,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
 
   return [
     // Homepage
@@ -15,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 1,
     },
-    
+
     // Marketing section
     {
       url: `${baseUrl}/marketing`,
@@ -65,7 +77,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/technical/blog`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.85,
     },
     {
       url: `${baseUrl}/technical/about`,
@@ -79,45 +91,85 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.75,
     },
+    {
+      url: `${baseUrl}/technical/products`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/technical/solutions`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/technical/careers`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/technical/contact`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
 
     // Technical services
     {
       url: `${baseUrl}/technical/services/ai-assistants`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
-      priority: 0.7,
+      priority: 0.75,
     },
     {
       url: `${baseUrl}/technical/services/automation-solutions`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
-      priority: 0.7,
+      priority: 0.75,
     },
     {
       url: `${baseUrl}/technical/services/data-analytics`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
-      priority: 0.7,
+      priority: 0.75,
     },
     {
       url: `${baseUrl}/technical/services/data-warehousing`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
-      priority: 0.7,
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/technical/services/software-development`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/technical/services/website-development`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.75,
     },
 
-    // Utility pages
-    {
-      url: `${baseUrl}/privacy`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/terms`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
+    // Blog posts (dynamically generated)
+    ...blogSitemapEntries,
+
+    // Utility pages (if they exist)
+    // Uncomment these when you create privacy and terms pages
+    // {
+    //   url: `${baseUrl}/privacy`,
+    //   lastModified: currentDate,
+    //   changeFrequency: 'yearly',
+    //   priority: 0.3,
+    // },
+    // {
+    //   url: `${baseUrl}/terms`,
+    //   lastModified: currentDate,
+    //   changeFrequency: 'yearly',
+    //   priority: 0.3,
+    // },
   ]
 }

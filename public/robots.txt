@@ -19,7 +19,7 @@ Allow: /
 Crawl-delay: 1
 
 # Sitemaps
-Sitemap: https://theladder.com/sitemap.xml
+Sitemap: https://www.theladders.tech/sitemap.xml
 
 # Request rate
 Request-rate: 30/60
