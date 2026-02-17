@@ -168,7 +168,20 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             prose-th:bg-[#252525] prose-th:text-[#D8F209] prose-th:font-bold prose-th:p-2 md:prose-th:p-4 prose-th:border prose-th:border-[#333333] prose-th:text-[clamp(12px,2.5vw,14px)]
             prose-td:p-2 md:prose-td:p-4 prose-td:border prose-td:border-[#333333] prose-td:text-[#FBFFDE]/80 prose-td:text-[clamp(12px,2.5vw,14px)]
           ">
-            <MDXRemote source={post.content} components={components} />
+            <MDXRemote
+              source={post.content}
+              components={components}
+              options={{
+                mdxOptions: {
+                  /* @ts-ignore */
+                  development: process.env.NODE_ENV === 'development',
+                },
+                /* next-mdx-remote v6 security options */
+                parseFrontmatter: false,
+                /* @ts-ignore */
+                blockJS: false,
+              }}
+            />
           </article>
         </div>
       </section>
