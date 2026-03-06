@@ -6,20 +6,29 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
 export async function generateStaticParams() {
-  const posts = getAllPostSlugs();
+  const posts = await getAllPostSlugs();
   return posts.map((post) => ({
     slug: post.slug,
   }));
 }
 
-export default function BlogPost({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug);
+export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    return (
+      <main className="bg-[#1E1E1E] min-h-screen flex items-center justify-center">
+        <h1 className="text-white text-2xl font-bold">Post not found.</h1>
+      </main>
+    );
+  }
 
   return (
     <main className="bg-[#1E1E1E] min-h-screen">
       {/* Back Button */}
       <div className="relative w-full max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-12 lg:px-16 xl:px-20 2xl:px-32 pt-8">
-        <Link 
+        <Link
           href="/technical/blog"
           className="inline-flex items-center gap-2 text-[#D8F209] hover:gap-3 transition-all duration-300 text-[clamp(14px,3vw,15px)] font-medium"
         >
@@ -31,7 +40,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
       {/* Hero Section */}
       <section className="relative py-12 md:py-16">
         <div className="relative w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-12">
-          
+
           {/* Category Badge */}
           <div className="inline-block mb-4">
             <span className="px-4 py-2 bg-[#D8F209]/10 text-[#D8F209] text-[clamp(11px,2.5vw,13px)] font-medium rounded-full uppercase tracking-wider">

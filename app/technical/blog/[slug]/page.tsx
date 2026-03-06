@@ -29,7 +29,14 @@ const components = {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: 'Post Not Found | The Ladder Technical Blog',
+      description: 'The requested blog post could not be found.',
+    };
+  }
 
   return {
     title: `${post.title} | The Ladder Technical Blog`,
@@ -72,7 +79,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export async function generateStaticParams() {
-  const posts = getAllPostSlugs();
+  const posts = await getAllPostSlugs();
   return posts.map((post) => ({
     slug: post.slug,
   }));
@@ -80,7 +87,15 @@ export async function generateStaticParams() {
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    return (
+      <main className="bg-[#1E1E1E] min-h-screen flex items-center justify-center">
+        <h1 className="text-white text-2xl font-bold">Post not found.</h1>
+      </main>
+    );
+  }
 
   return (
     <main className="bg-[#1E1E1E] min-h-screen">

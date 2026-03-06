@@ -43,9 +43,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BlogPage() {
-  const allPosts = getAllPosts();
-  const allCategories = getAllCategories();
+export default async function BlogPage() {
+  const allPosts = await getAllPosts();
+  const allCategories = await getAllCategories();
 
   return (
     <main className="bg-[#1E1E1E] min-h-screen">

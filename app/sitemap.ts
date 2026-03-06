@@ -6,12 +6,12 @@ import { getAllPosts } from '@/lib/blog'
 import fs from 'fs'
 import path from 'path'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.theladders.tech'
   const currentDate = new Date().toISOString()
 
-  // Get all blog posts dynamically
-  const blogPosts = getAllPosts()
+  // Get all blog posts dynamically from Contentful
+  const blogPosts = await getAllPosts()
   const blogSitemapEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${baseUrl}/technical/blog/${post.slug}`,
     lastModified: post.date ? new Date(post.date).toISOString() : currentDate,
