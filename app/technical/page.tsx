@@ -12,9 +12,12 @@ import TechFooter from '@/components/technical/TechCommonComponents/TechFooter';
 import DesignShowcase from "@/components/technical/techhomecomponents/DesignShowcase";
 
 export const metadata: Metadata = {
-  title: "Technical Solutions | AI, Automation & Analytics | The Ladder",
-  description: "Enterprise technical solutions including AI assistants, automation, data analytics, and web development to drive business transformation.",
+  title: "Technical Solutions | AI, Automation & Analytics | The Ladder Tech",
+  description: "Enterprise technical solutions including AI assistants, automation, data analytics, and web development to drive business transformation for The Ladder Tech.",
   keywords: [
+    "the ladder",
+    "the ladder tech",
+    "theladders.tech",
     "AI assistants",
     "automation solutions",
     "data analytics",
@@ -29,8 +32,8 @@ export const metadata: Metadata = {
     "cloud solutions"
   ],
   openGraph: {
-    title: "Technical Solutions | The Ladder",
-    description: "Enterprise technical solutions for digital transformation.",
+    title: "Technical Solutions | The Ladder Tech",
+    description: "Enterprise technical solutions for digital transformation from The Ladder Tech.",
     url: "https://www.theladders.tech/technical",
     type: "website",
     images: [
@@ -38,14 +41,14 @@ export const metadata: Metadata = {
         url: "https://www.theladders.tech/og-image.png",
         width: 1200,
         height: 630,
-        alt: "The Ladder Technical Solutions",
+        alt: "The Ladder Tech Technical Solutions",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Technical Solutions | The Ladder",
-    description: "Enterprise technical solutions for digital transformation.",
+    title: "Technical Solutions | The Ladder Tech",
+    description: "Enterprise technical solutions for digital transformation from The Ladder Tech.",
     images: ["https://www.theladders.tech/twitter-image.png"],
   },
   alternates: {

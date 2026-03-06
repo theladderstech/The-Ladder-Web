@@ -19,25 +19,25 @@ export default function Navbar() {
   const currentDept = isMarketing ? 'marketing' : isTechnical ? 'technical' : 'marketing';
 
   // Color schemes based on department
-  const colors = currentDept === 'marketing' 
+  const colors = currentDept === 'marketing'
     ? {
-        bg: '#363A43',
-        primary: '#FFE000',
-        text: '#FFF9CE',
-        textHover: '#FFE000',
-        buttonBg: '#FFE000',
-        buttonText: '#363A43',
-        border: '#FFE000',
-      }
+      bg: '#363A43',
+      primary: '#FFE000',
+      text: '#FFF9CE',
+      textHover: '#FFE000',
+      buttonBg: '#FFE000',
+      buttonText: '#363A43',
+      border: '#FFE000',
+    }
     : {
-        bg: '#1E1E1E',
-        primary: '#D8F209',
-        text: '#FBFFDE',
-        textHover: '#D8F209',
-        buttonBg: '#D8F209',
-        buttonText: '#1E1E1E',
-        border: '#D8F209',
-      };
+      bg: '#1E1E1E',
+      primary: '#D8F209',
+      text: '#FBFFDE',
+      textHover: '#D8F209',
+      buttonBg: '#D8F209',
+      buttonText: '#1E1E1E',
+      border: '#D8F209',
+    };
 
   const toggleDept = () => {
     const newDept = currentDept === 'marketing' ? 'technical' : 'marketing';
@@ -59,19 +59,19 @@ export default function Navbar() {
   ];
 
   // Navigation links based on department
-  const navLinks = currentDept === 'marketing' 
+  const navLinks = currentDept === 'marketing'
     ? [
-        { label: 'Home', href: '/marketing' },
-        { label: 'Services', href: '/marketing/services' },
-        { label: 'About', href: '/marketing/about' },
-        { label: 'Contact', href: '/marketing/contact' },
-      ]
+      { label: 'Home', href: '/marketing' },
+      { label: 'Services', href: '/marketing/services' },
+      { label: 'About', href: '/marketing/about' },
+      { label: 'Contact', href: '/marketing/contact' },
+    ]
     : [
-        { label: 'Home', href: '/technical' },
-        { label: 'Services', href: '/technical/services', hasDropdown: true },
-        { label: 'Blogs', href: '/technical/blog' },
-        { label: 'About Us', href: '/technical/about' },
-      ];
+      { label: 'Home', href: '/technical' },
+      { label: 'Services', href: '/technical/services', hasDropdown: true },
+      { label: 'Blogs', href: '/technical/blog' },
+      { label: 'About Us', href: '/technical/about' },
+    ];
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -86,9 +86,9 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav 
+    <nav
       className="sticky top-0 z-50 h-[72px] flex items-center transition-colors duration-300"
-      style={{ 
+      style={{
         backgroundColor: colors.bg,
         borderBottom: `1px solid ${colors.primary}33`
       }}
@@ -98,10 +98,10 @@ export default function Navbar() {
         {/* Logo Only */}
         <div className="flex-shrink-0">
           <Link href={`/${currentDept}`} rel="home">
-            <Image 
+            <Image
               src={logoSrc}
-              alt={`The Ladder ${currentDept === 'marketing' ? 'Marketing' : 'Technical'} - Home`}
-              width={90} 
+              alt={`The Ladder Tech ${currentDept === 'marketing' ? 'Marketing' : 'Technical'} - Home`}
+              width={90}
               height={90}
               className="rounded-full hover:scale-105 transition-transform duration-200"
             />
@@ -112,9 +112,9 @@ export default function Navbar() {
         <div className="flex-1 hidden md:flex justify-center px-16">
           <div className="flex gap-8 items-center">
             {navLinks.map((link) => (
-              <div 
-                key={link.href} 
-                className="relative" 
+              <div
+                key={link.href}
+                className="relative"
                 ref={link.hasDropdown ? dropdownRef : null}
               >
                 {link.hasDropdown && currentDept === 'technical' ? (
@@ -123,9 +123,8 @@ export default function Navbar() {
                     <div className="flex items-center gap-1">
                       <Link
                         href={link.href}
-                        className={`text-base font-medium leading-[22px] transition-all duration-200 ${
-                          pathname === link.href ? 'font-bold' : ''
-                        }`}
+                        className={`text-base font-medium leading-[22px] transition-all duration-200 ${pathname === link.href ? 'font-bold' : ''
+                          }`}
                         style={{
                           color: pathname.startsWith('/technical/services') ? colors.primary : colors.text,
                         }}
@@ -140,10 +139,10 @@ export default function Navbar() {
                         className="p-1 hover:opacity-70 transition-opacity"
                         aria-label="Toggle services dropdown"
                       >
-                        <svg 
+                        <svg
                           className={`w-4 h-4 transition-transform duration-200 ${isServicesDropdownOpen ? 'rotate-180' : ''}`}
-                          fill="none" 
-                          stroke="currentColor" 
+                          fill="none"
+                          stroke="currentColor"
                           viewBox="0 0 24 24"
                           style={{ color: pathname.startsWith('/technical/services') ? colors.primary : colors.text }}
                         >
@@ -154,9 +153,9 @@ export default function Navbar() {
 
                     {/* Dropdown Menu */}
                     {isServicesDropdownOpen && (
-                      <div 
+                      <div
                         className="absolute top-full left-0 mt-2 py-2 rounded-lg shadow-xl min-w-[280px] border"
-                        style={{ 
+                        style={{
                           backgroundColor: colors.bg,
                           borderColor: colors.primary + '40'
                         }}
@@ -190,9 +189,8 @@ export default function Navbar() {
                   // Regular Link
                   <Link
                     href={link.href}
-                    className={`text-base font-medium leading-[22px] transition-all duration-200 ${
-                      pathname === link.href ? 'font-bold' : ''
-                    }`}
+                    className={`text-base font-medium leading-[22px] transition-all duration-200 ${pathname === link.href ? 'font-bold' : ''
+                      }`}
                     style={{
                       color: pathname === link.href ? colors.primary : colors.text,
                     }}
@@ -206,13 +204,13 @@ export default function Navbar() {
                 )}
               </div>
             ))}
-            
+
             {/* Vertical Divider */}
-            <div 
+            <div
               className="h-6 w-px"
               style={{ backgroundColor: colors.primary, opacity: 0.4 }}
             ></div>
-            
+
             {/* Clean Portfolio CTA Button */}
             <button
               onClick={() => router.push(`/${currentDept}/portfolio`)}
@@ -230,19 +228,18 @@ export default function Navbar() {
 
         {/* Department Toggle Slider (Desktop) */}
         <div className="hidden md:flex items-center gap-3 flex-shrink-0">
-          <span 
-            className={`text-sm font-medium transition-all duration-200 ${
-              currentDept === 'marketing' ? 'opacity-100' : 'opacity-50'
-            }`}
+          <span
+            className={`text-sm font-medium transition-all duration-200 ${currentDept === 'marketing' ? 'opacity-100' : 'opacity-50'
+              }`}
             style={{ color: colors.text }}
           >
             Marketing
           </span>
-          
+
           <button
             onClick={toggleDept}
             className="relative w-14 h-7 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2"
-            style={{ 
+            style={{
               backgroundColor: colors.primary,
             }}
             aria-label="Toggle department"
@@ -254,11 +251,10 @@ export default function Navbar() {
               }}
             />
           </button>
-          
-          <span 
-            className={`text-sm font-medium transition-all duration-200 ${
-              currentDept === 'technical' ? 'opacity-100' : 'opacity-50'
-            }`}
+
+          <span
+            className={`text-sm font-medium transition-all duration-200 ${currentDept === 'technical' ? 'opacity-100' : 'opacity-50'
+              }`}
             style={{ color: colors.text }}
           >
             Technical
@@ -273,15 +269,15 @@ export default function Navbar() {
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-menu"
         >
-          <span 
+          <span
             className={`block w-6 h-0.5 transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}
             style={{ backgroundColor: colors.primary }}
           ></span>
-          <span 
+          <span
             className={`block w-6 h-0.5 transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}
             style={{ backgroundColor: colors.primary }}
           ></span>
-          <span 
+          <span
             className={`block w-6 h-0.5 transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}
             style={{ backgroundColor: colors.primary }}
           ></span>
@@ -290,7 +286,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div 
+        <div
           className="md:hidden fixed inset-0 top-[72px] z-50 transition-colors duration-300 overflow-y-auto"
           style={{ backgroundColor: colors.bg }}
           id="mobile-menu"
@@ -304,9 +300,8 @@ export default function Navbar() {
                       <Link
                         href={link.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className={`text-lg font-medium transition-all duration-200 ${
-                          pathname === link.href ? 'font-bold' : ''
-                        }`}
+                        className={`text-lg font-medium transition-all duration-200 ${pathname === link.href ? 'font-bold' : ''
+                          }`}
                         style={{
                           color: pathname.startsWith('/technical/services') ? colors.primary : colors.text,
                         }}
@@ -318,10 +313,10 @@ export default function Navbar() {
                         className="p-1"
                         aria-label="Toggle services dropdown"
                       >
-                        <svg 
+                        <svg
                           className={`w-5 h-5 transition-transform duration-200 ${isMobileServicesOpen ? 'rotate-180' : ''}`}
-                          fill="none" 
-                          stroke="currentColor" 
+                          fill="none"
+                          stroke="currentColor"
                           viewBox="0 0 24 24"
                           style={{ color: colors.primary }}
                         >
@@ -329,7 +324,7 @@ export default function Navbar() {
                         </svg>
                       </button>
                     </div>
-                    
+
                     {isMobileServicesOpen && (
                       <div className="flex flex-col items-center gap-3 mt-3 w-full px-4">
                         {technicalServices.map((service) => (
@@ -355,9 +350,8 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`text-lg font-medium transition-all duration-200 ${
-                      pathname === link.href ? 'font-bold' : ''
-                    }`}
+                    className={`text-lg font-medium transition-all duration-200 ${pathname === link.href ? 'font-bold' : ''
+                      }`}
                     style={{
                       color: pathname === link.href ? colors.primary : colors.text,
                     }}
@@ -369,13 +363,13 @@ export default function Navbar() {
                 )}
               </div>
             ))}
-            
+
             {/* Mobile Divider */}
-            <div 
+            <div
               className="w-32 h-px my-2"
               style={{ backgroundColor: colors.primary, opacity: 0.4 }}
             ></div>
-            
+
             {/* Mobile Portfolio Button */}
             <button
               onClick={() => {
@@ -391,18 +385,17 @@ export default function Navbar() {
             >
               View Portfolio →
             </button>
-            
+
             {/* Mobile Toggle Slider */}
             <div className="flex items-center gap-3 mt-4">
-              <span 
-                className={`text-sm font-medium ${
-                  currentDept === 'marketing' ? 'opacity-100' : 'opacity-50'
-                }`}
+              <span
+                className={`text-sm font-medium ${currentDept === 'marketing' ? 'opacity-100' : 'opacity-50'
+                  }`}
                 style={{ color: colors.text }}
               >
                 Marketing
               </span>
-              
+
               <button
                 onClick={toggleDept}
                 className="relative w-14 h-7 rounded-full transition-all duration-300"
@@ -416,11 +409,10 @@ export default function Navbar() {
                   }}
                 />
               </button>
-              
-              <span 
-                className={`text-sm font-medium ${
-                  currentDept === 'technical' ? 'opacity-100' : 'opacity-50'
-                }`}
+
+              <span
+                className={`text-sm font-medium ${currentDept === 'technical' ? 'opacity-100' : 'opacity-50'
+                  }`}
                 style={{ color: colors.text }}
               >
                 Technical

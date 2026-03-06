@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import Navbar from '@/components/common/Navbar';
 
 export const metadata: Metadata = {
-  title: "Technical Solutions | The Ladder",
-  description: "Unlock technical excellence with The Ladder. AI, automation, data analytics, and web development for enterprise growth.",
+  title: "Technical Solutions | The Ladder Tech",
+  description: "Unlock technical excellence with The Ladder Tech. AI, automation, data analytics, and web development for enterprise growth.",
 };
 
 export const viewport: Viewport = {

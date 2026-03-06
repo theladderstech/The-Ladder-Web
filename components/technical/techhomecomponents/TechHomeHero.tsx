@@ -91,14 +91,17 @@ export default function Hero() {
           </div>
 
           {/* Main Heading */}
-          <h1 className="max-w-5xl px-4">
-            <span className="block text-[#D8F209] font-bold leading-tight text-[clamp(24px,5vw,56px)]">
-              Building Digital Foundations
-            </span>
-            <span className="block text-[#D8F209] font-bold leading-tight text-[clamp(24px,5vw,56px)] mt-1">
-              That Help Brands Grow
-            </span>
-          </h1>
+          <div className="max-w-5xl px-4">
+            <h1 className="sr-only">The Ladder Tech - Enterprise Technical Solutions & AI Development</h1>
+            <h2 className="m-0 p-0 border-0 outline-none">
+              <span className="block text-[#D8F209] font-bold leading-tight text-[clamp(24px,5vw,56px)]">
+                Building Digital Foundations
+              </span>
+              <span className="block text-[#D8F209] font-bold leading-tight text-[clamp(24px,5vw,56px)] mt-1">
+                That Help Brands Grow
+              </span>
+            </h2>
+          </div>
 
           {/* Description */}
           <p className="max-w-2xl text-[#FBFFDE]/90 text-[clamp(14px,3.5vw,18px)] leading-relaxed px-4">

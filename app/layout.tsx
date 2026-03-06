@@ -20,9 +20,13 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "The Ladder | Digital Marketing & Technical Solutions",
-  description: "The Ladder offers premium digital marketing and technical solutions to help brands climb to success. Expert strategies, measurable results, and proven growth.",
+  title: "The Ladder Tech | Digital Marketing & Technical Solutions",
+  description: "The Ladder Tech offers premium digital marketing and technical solutions to help brands climb to success. Expert strategies in AI, automation, and proven growth.",
   keywords: [
+    "the ladder",
+    "the ladder tech",
+    "theladders.tech",
+    "theladders tech",
     "digital marketing",
     "technical solutions",
     "web development",
@@ -38,9 +42,9 @@ export const metadata: Metadata = {
     "marketing agency",
     "technical consulting"
   ],
-  authors: [{ name: "The Ladder" }],
-  creator: "The Ladder",
-  publisher: "The Ladder",
+  authors: [{ name: "The Ladder Tech" }],
+  creator: "The Ladder Tech",
+  publisher: "The Ladder Tech",
   icons: {
     icon: [
       { url: "/ladder-icon.svg", type: "image/svg+xml" }
@@ -66,22 +70,22 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://www.theladders.tech",
-    siteName: "The Ladder",
-    title: "The Ladder | Digital Marketing & Technical Solutions",
-    description: "Premium digital marketing and technical solutions for business growth",
+    siteName: "The Ladder Tech",
+    title: "The Ladder Tech | Digital Marketing & Technical Solutions",
+    description: "Premium digital marketing and technical solutions for business growth from The Ladder Tech.",
     images: [
       {
         url: "https://www.theladders.tech/og-image.png",
         width: 1200,
         height: 630,
-        alt: "The Ladder - Digital Solutions",
+        alt: "The Ladder Tech - Digital Solutions",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Ladder | Digital Marketing & Technical Solutions",
-    description: "Premium digital marketing and technical solutions for business growth",
+    title: "The Ladder Tech | Digital Marketing & Technical Solutions",
+    description: "Premium digital marketing and technical solutions for business growth from The Ladder Tech.",
     creator: "@theladder",
     images: ["https://www.theladders.tech/twitter-image.png"],
   },
@@ -109,10 +113,10 @@ export default function RootLayout({
               "@graph": [
                 {
                   "@type": "Organization",
-                  "name": "The Ladder",
+                  "name": "The Ladder Tech",
                   "url": "https://www.theladders.tech",
                   "logo": "https://www.theladders.tech/ladder-icon.svg",
-                  "description": "Premium digital marketing and technical solutions for business growth",
+                  "description": "The Ladder Tech: Premium digital marketing and enterprise technical solutions for business growth.",
                   "sameAs": [
                     "https://twitter.com/theladder"
                   ],
@@ -124,7 +128,7 @@ export default function RootLayout({
                 },
                 {
                   "@type": "WebSite",
-                  "name": "The Ladder",
+                  "name": "The Ladder Tech",
                   "url": "https://www.theladders.tech",
                   "potentialAction": {
                     "@type": "SearchAction",
