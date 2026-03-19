@@ -117,7 +117,7 @@ export default function MarketFooter() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[#FFE000]">
             {/* Copyright */}
             <p>
-              The Ladder © All Rights Reserved - 2025
+              The Ladder © All Rights Reserved - 2026
             </p>
 
             {/* Legal Links */}

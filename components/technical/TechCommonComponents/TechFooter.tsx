@@ -153,7 +153,7 @@ export default function TechFooter() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[#FBFFDE]">
             {/* Copyright */}
             <p>
-              The Ladder Tech © All Rights Reserved - 2025
+              The Ladder Tech © All Rights Reserved - 2026
             </p>
 
             {/* Legal Links */}

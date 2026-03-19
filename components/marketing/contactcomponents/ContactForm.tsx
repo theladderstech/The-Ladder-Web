@@ -244,29 +244,7 @@ export default function ContactForm() {
             </form>
           </div>
 
-          {/* Right Side - Map */}
-          <div className="w-full lg:w-1/2">
-            <div className="w-full h-[400px] sm:h-[500px] lg:h-full lg:min-h-[500px] bg-[#E5E5E5] rounded-2xl overflow-hidden relative">
-              {/* Placeholder Map - Replace with actual Google Maps embed */}
-              <div className="w-full h-full flex items-center justify-center">
-                <svg className="w-16 h-16 sm:w-20 sm:h-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-              </div>
-              
-              {/* Uncomment and add your Google Maps embed URL */}
-              {/* <iframe
-                src="YOUR_GOOGLE_MAPS_EMBED_URL"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe> */}
-            </div>
-          </div>
+
 
         </div>
       </div>
